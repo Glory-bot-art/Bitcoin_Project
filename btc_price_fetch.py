@@ -8,5 +8,11 @@ def get_btc_price():
     )
     data = response.json()
     print(data["bitcoin"]["usd"])
-get_btc_price()
 
+
+#try/except for network failure
+try:
+    get_btc_price()
+except:
+    print("No internet! Please connect to a network.")
+    
