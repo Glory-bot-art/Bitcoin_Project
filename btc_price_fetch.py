@@ -9,3 +9,4 @@ def get_btc_price():
     data = response.json()
     print(data["bitcoin"]["usd"])
 get_btc_price()
+
