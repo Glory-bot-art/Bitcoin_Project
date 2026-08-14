@@ -15,4 +15,18 @@ try:
     get_btc_price()
 except:
     print("No internet! Please connect to a network.")
+
+####### Rate limitng ########
+
+response = requests.get(
+    "https://api.coingecko.com/api/v3/simple/price",
+    params={"ids": "bitcoin", "vs_currencies": "usd"}
+)
+if response.status_code == 200:
+    data = response.json()
     
+elif response.status_code == 429:
+    print("🚨 CoinGecko is rate-limiting us. Slow down!")
+    
+else:
+    print(f"⚠️ Something went wrong. Status code: {response.status_code}")
