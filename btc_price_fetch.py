@@ -24,3 +24,5 @@ def get_btc_price():
 
     except requests.exceptions.RequestException as e:
         print(f"⚠️ Network error occurred: {e}")
+
+get_btc_price()
