@@ -10,6 +10,6 @@ A lightweight command-line tool to fetch live cryptocurrency prices using the Co
 
 
 ## How to run
-1. Open your terminal.
-2. Run :get_crypto_price.py
-3. Enter your desired coin and currency when prompted!
+1. copy and paste code from custom_crypto_price_fetch.py
+2. Run this is terminal : python cutom_crypto_price_fetch.py
+3. Enter
