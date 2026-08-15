@@ -1,4 +1,5 @@
 import csv
+import os
 from datetime import datetime
 import requests
 
@@ -6,11 +7,15 @@ import requests
 def log_price_to_csv(coin, currency, price, filename="crypto_history.csv"):
     """
     Appends a single price record with a timestamp to a CSV file.
+    Writes a header row first if the file doesn't exist yet.
     """
+    file_exists = os.path.isfile(filename)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     with open(filename, mode="a", newline="") as file:
         writer = csv.writer(file)
+        if not file_exists:
+            writer.writerow(["timestamp", "coin", "currency", "price"])
         writer.writerow([timestamp, coin, currency, price])
 
 
@@ -34,8 +39,7 @@ def get_crypto_price(coin, currency):
             if coin in data and currency in data[coin]:
                 price = data[coin][currency]
                 print(f"Current {coin.capitalize()} Price: {price:,.2f} {currency.upper()}")
-                
-                # Log to CSV
+
                 log_price_to_csv(coin, currency, price)
                 print("📁 Saved price check to crypto_history.csv")
             else:
